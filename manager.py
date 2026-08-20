@@ -1,10 +1,10 @@
 import subprocess;
 
-# dataSizes = (100, 1000, 10000, 100000, 1000000)
-dataSizes = (100, 1000, 10000, 30000)
+dataSizes = (100, 1000, 10000, 100000, 1000000)
+# dataSizes = (100, 1000, 10000, 30000)
 
 # fileName = input("Enter C++ exe file name with address: ")
-fileName = "C++\\sortings.exe"
+fileName = "C++\\hello.exe"
 runs_per_datasize = int(input("Num of times to run program per data size: "))
 results = {}
 averages = {}
@@ -61,6 +61,23 @@ def save_to_csv():
             for category in categories:
                 row.append(averages[size][category])
             writer.writerow(row)
+def plot_graph():
+    import matplotlib.pyplot as plt # type: ignore
+    categories = list(averages[dataSizes[0]].keys())
+    for category in categories:
+        ticks = []
+        for size in dataSizes:
+            ticks.append(averages[size][category])
+        plt.plot(dataSizes, ticks, marker = "o", label = category)
+
+    plt.xlabel("Data Size")    
+    plt.ylabel("Average Time (ticks)")
+    plt.title("Algorithm Performance")
+    plt.legend()
+    plt.grid()
+
+    plt.savefig("performance.png")
+    plt.close()
 
 print("\nRunning experiments on",fileName, "using data sizes: ", dataSizes, "\n")
 run_experiment()
@@ -75,4 +92,5 @@ for size in results:
             sum(results[size][category])
             / len(results[size][category])
         )
-save_to_csv()
+# save_to_csv()
+plot_graph()

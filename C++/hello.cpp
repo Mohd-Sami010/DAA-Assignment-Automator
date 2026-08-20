@@ -33,11 +33,11 @@ int main()
     double ticks1 = (double)(end1 - start1);
     double ticks2 = (double)(end2 - start2);
 
-    cout << "Type: Sum " << sum << endl;
-    cout << "Ticks= " << ticks1 << endl
+    cout << "Type: Sum " << endl;
+    cout << "Ticks: " << ticks1 << endl
          << endl;
 
-    cout << "Type: Product " << product << endl;
+    cout << "Type: Product " << endl;
     cout << "Ticks: " << ticks2 << endl;
 
     return 0;
