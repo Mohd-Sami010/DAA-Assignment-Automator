@@ -7,6 +7,22 @@ dataSizes = (100, 1000, 10000)
 # fileName = input("Enter C++ exe file name with address: ")
 fileName = "C++\\sortings.exe"
 results = {}
+
+def printResultTable():
+    print("\n\tRESULTS (Data Size and Average Ticks)\n")
+    header = f"{'Size':10}|"
+    for i in results[dataSizes[0]]:
+        header += f"{i:20}|"
+    print(header, "\n", "-" * len(header), sep="")
+    for i in results:
+        print(f"{str(i).ljust(10):10}", end= "|")
+
+        for j in results[i]:
+            average = sum(results[i][j])/ len(results[i][j])
+            print(f"{str(average).ljust(20):20}", end="|")
+
+        print()
+    
 for d in dataSizes:
     ticks_by_category = {}
 
@@ -32,16 +48,4 @@ for d in dataSizes:
 
     results[d] = ticks_by_category
 
-print("\n\tRESULTS (Size and Avgerage Ticks)\n")
-print(f"{'Size':10}|", end="")
-for i in results[dataSizes[0]]:
-    print(f"{i:20}", end="|")
-print()
-for i in results:
-    print(f"{str(i).ljust(10):10}", end= "|")
-
-    for j in results[i]:
-        average = sum(results[i][j])/ len(results[i][j])
-        print(f"{str(average).ljust(20):20}", end="|")
-
-    print()
+printResultTable()
