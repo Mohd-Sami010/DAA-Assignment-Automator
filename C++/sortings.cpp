@@ -109,7 +109,7 @@ int main()
         cout << "\nInsertion Sort:\n";
         PrintArray(arr3, n);
     }
-    cout << "\nAlgorithm\t\tClock Ticks\n";
+    cout << "\nAlgorithm      Clock Ticks\n";
     cout << "--------------------------------------------\n";
     cout << "Type: Bubble Sort" << endl;
     cout << "Ticks: " << ticks1 << endl

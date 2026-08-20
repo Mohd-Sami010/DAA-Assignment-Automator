@@ -1,14 +1,13 @@
 import subprocess;
 
-dataSizes = (100, 1000, 10000, 100000, 1000000)
-# dataSizes = (100, 1000, 10000, 30000)
-
-# fileName = input("Enter C++ exe file name with address: ")
-fileName = "C++\\hello.exe"
+fileName = input("Enter C++ exe file name with address: ")
+dataSizes = eval(input("Enter data sizes to run (eg: 100, 1000 etc) as tuple: "))
 runs_per_datasize = int(input("Num of times to run program per data size: "))
 results = {}
 averages = {}
+outputs = []
 
+# Experimenting
 def print_result_table():
     print("\n\tRESULTS (Data Size and Average Ticks)\n")
     header = f"{'Size':10}|"
@@ -39,6 +38,10 @@ def run_experiment():
                 print(cpp_result.stderr)
                 exit()
             output = cpp_result.stdout
+            if i == 0: 
+                output_lines = output.splitlines()
+                output_lines[0] += str(d)
+                outputs.append(output_lines)
             if i == 0: category = ""
             for line in output.splitlines():
                 if line.startswith("Type: "):
@@ -52,6 +55,8 @@ def run_experiment():
         results[d] = ticks_by_category
 def save_to_csv():
     import csv
+
+    print("Saving to CSV...")
     categories = list(averages[dataSizes[0]].keys())
     with open("results.csv", "w", newline="") as file:
         writer = csv.writer(file)
@@ -63,6 +68,7 @@ def save_to_csv():
             writer.writerow(row)
 def plot_graph():
     import matplotlib.pyplot as plt # type: ignore
+    print("\nPlotting Graph...")
     categories = list(averages[dataSizes[0]].keys())
     for category in categories:
         ticks = []
@@ -78,11 +84,10 @@ def plot_graph():
 
     plt.savefig("performance.png")
     plt.close()
+    print("Graph saved as performance.png")
 
 print("\nRunning experiments on",fileName, "using data sizes: ", dataSizes, "\n")
 run_experiment()
-print_result_table()
-
 # Averages
 for size in results:
     averages[size] = {}
@@ -92,5 +97,37 @@ for size in results:
             sum(results[size][category])
             / len(results[size][category])
         )
+
+print_result_table()
 # save_to_csv()
 plot_graph()
+
+def make_assignment():
+    # Making Assignment
+    assignment_number = int(input("Enter Assignment number: "))
+    assignment_name = input("Enter Assignment name: ")
+    assignment_statement = input("Enter assignment statement (eg: Analyze Linear search..):")
+    theory = input("Enter theory: ")
+    time_complexity = input("Enter time complexity: ")
+    space_complexity = input("Enter space complexity: ")
+    complexity_analysis = input("Enter complexity analysis / conclusion: ")
+    code = []
+    code = ""
+    with open(fileName[:-3]+"cpp", "r") as file:
+        for line in file.readlines():
+            code += line
+    from pdf_generator import generate_pdf
+    generate_pdf(
+    assignment_number,
+    assignment_name,
+    assignment_statement,
+    theory,
+    time_complexity,
+    space_complexity,
+    complexity_analysis,
+    code,
+    outputs,
+    averages,
+    "performance.png"
+)
+make_assignment()
