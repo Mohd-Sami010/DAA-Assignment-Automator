@@ -53,36 +53,42 @@ def run_experiment():
                     ticks_by_category[category].append(ticks)
         print()
         results[d] = ticks_by_category
-def save_to_csv():
-    import csv
-
-    print("Saving to CSV...")
-    categories = list(averages[dataSizes[0]].keys())
-    with open("results.csv", "w", newline="") as file:
-        writer = csv.writer(file)
-        writer.writerow(["Size"] + categories)
-        for size in dataSizes:
-            row = [size]
-            for category in categories:
-                row.append(averages[size][category])
-            writer.writerow(row)
 def plot_graph():
-    import matplotlib.pyplot as plt # type: ignore
+    import matplotlib.pyplot as plt  # type: ignore
+
     print("\nPlotting Graph...")
+
     categories = list(averages[dataSizes[0]].keys())
+
+    x_positions = range(len(dataSizes))
     for category in categories:
         ticks = []
         for size in dataSizes:
             ticks.append(averages[size][category])
-        plt.plot(dataSizes, ticks, marker = "o", label = category)
+        plt.plot(
+            x_positions,
+            ticks,
+            marker="o",
+            label=category
+        )
 
-    plt.xlabel("Data Size")    
+    plt.xticks(
+        x_positions,
+        [f"{x:,}" for x in dataSizes]
+    )
+
+    plt.xlabel("Data Size")
     plt.ylabel("Average Time (ticks)")
     plt.title("Algorithm Performance")
+
     plt.legend()
     plt.grid()
 
-    plt.savefig("performance.png")
+    plt.savefig(
+        "performance.png",
+        dpi=300,
+        bbox_inches="tight"
+    )
     plt.close()
     print("Graph saved as performance.png")
 
@@ -99,7 +105,6 @@ for size in results:
         )
 
 print_result_table()
-# save_to_csv()
 plot_graph()
 
 def make_assignment():
@@ -107,6 +112,11 @@ def make_assignment():
     assignment_number = int(input("Enter Assignment number: "))
     assignment_name = input("Enter Assignment name: ")
     assignment_statement = input("Enter assignment statement (eg: Analyze Linear search..):")
+    print('''
+Prompt for claude: Write short concise theory about these algos, just 1 or 2 lines each (lines must end with \\n)
+Also write Time complexity, space complexity and a 2 lined conclusion (plain text, lines end with \\n
+        ''')
+    
     theory = input("Enter theory: ")
     time_complexity = input("Enter time complexity: ")
     space_complexity = input("Enter space complexity: ")

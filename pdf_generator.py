@@ -191,8 +191,6 @@ def generate_pdf(
         )
     )
 
-    story.append(PageBreak())
-
     story.append(
         Paragraph("4. OUTPUT", heading_style)
     )
@@ -217,8 +215,7 @@ def generate_pdf(
         story.append(output_block)
 
         story.append(Spacer(1, 10))
-
-    story.append(PageBreak())
+        
     story.append(
         Paragraph("5. COMPLEXITY ANALYSIS", heading_style)
     )
