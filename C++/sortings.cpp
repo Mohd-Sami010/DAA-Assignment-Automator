@@ -117,8 +117,8 @@ int main()
     cout << "Type: Selection Sort" << endl;
     cout << "Ticks: " << ticks2 << endl
          << endl;
-    // cout << "Type: Insertion Sort" << endl;
-    // cout << "Ticks: " << ticks3 << endl
-    //      << endl;
+    cout << "Type: Insertion Sort" << endl;
+    cout << "Ticks: " << ticks3 << endl
+         << endl;
     return 0;
 }

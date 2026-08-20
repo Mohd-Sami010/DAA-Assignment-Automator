@@ -1,3 +1,3 @@
- Insertion Sort" << endl;
-    // cout << "Ticks: " << ticks3 << endl
-    //      << endl;
+: Insertion Sort" << endl;
+    cout << "Ticks: " << ticks3 << endl
+         << endl;
