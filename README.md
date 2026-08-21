@@ -38,9 +38,9 @@ project/
 ├── manager.py
 ├── pdf_generator.py
 ├── info.txt
-└── C++/
-    ├── algorithm.cpp
-    └── algorithm.exe
+└── Sample programs for testing/
+    ├── sortings.cpp
+    └── sortings.exe
 ```
 
 ---
@@ -403,9 +403,9 @@ project/
 ├── performance.png
 ├── Assignment_1.pdf
 │
-└── C++/
-    ├── algorithm.cpp
-    └── algorithm.exe
+└── Sample programs for testing/
+    ├── sortings.cpp
+    └── sortings.exe
 ```
 
 ---
