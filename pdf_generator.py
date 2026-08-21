@@ -123,15 +123,8 @@ def generate_pdf(
 
     story.append(
         Paragraph(
-            f"DAA PRACTICAL ASSIGNMENT",
+            f"DAA ASSIGNMENT {assignment_num}: {assignment_name}",
             title_style
-        )
-    )
-
-    story.append(
-        Paragraph(
-            f"Assignment {assignment_num}: {assignment_name}",
-            styles["Heading2"]
         )
     )
 
