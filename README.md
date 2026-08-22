@@ -12,7 +12,7 @@ A Python tool that automates the repetitive parts of **Design & Analysis of Algo
 
 ## 🎥 Demonstration
 
-[Watch the demonstration video](https://lnkd.in/p/gpWTb8Mb)
+[![Watch the video](https://youtube.com)](https://youtu.be/h2melDyn_tI)
 
 ---
 
